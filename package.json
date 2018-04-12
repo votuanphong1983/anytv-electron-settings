@@ -1,0 +1,50 @@
+{
+  "name": "anytv-electron-settings",
+  "version": "1.0.0",
+  "description": "A simple persistent user settings framework for Electron.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test:main && npm run test:renderer",
+    "test:main": "electron-mocha tests",
+    "test:renderer": "electron-mocha tests --renderer"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/votuanphong1983/electron-settings"
+  },
+  "author": "Freedom!",
+  "license": "ISC",
+  "keywords": [
+    "electron",
+    "app",
+    "user",
+    "data",
+    "settings",
+    "config",
+    "storage",
+    "json",
+    "has",
+    "get",
+    "getAll",
+    "set",
+    "setAll",
+    "delete",
+    "deleteAll",
+    "watch",
+    "file"
+  ],
+  "dependencies": {
+    "clone": "^2.1.1",
+    "jsonfile": "^4.0.0",
+    "lodash": "^4.17.5"
+  },
+  "devDependencies": {
+    "electron": "^1.7.8",
+    "electron-mocha": "^4.0.3",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.10.0",
+    "mocha": "^3.5.3",
+    "randomstring": "^1.1.5"
+  }
+}
