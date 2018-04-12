@@ -221,6 +221,8 @@ describe('settings', () => {
 
       it('should watch the given simple key path', done => {
         settings.watch('foo', function handler(newValue, oldValue) {
+          console.log('newVal = ', newValue)
+          console.log('oldVal = ', oldValue)
           assert.deepEqual(oldValue, { bar: 'baz' });
           assert.deepEqual(newValue, { bar: 'qux' });
 
@@ -292,22 +294,6 @@ describe('settings', () => {
         assert.deepEqual(settings.get('foo.bar'), 'qux');
         assert.equal(settings.file(), customSettingsFilePath);
       });
-    });
-
-    describe('clearPath()', () => {
-
-      it('should clear a custom path for the settings file', () => {
-        const userDataPath = app.getPath('userData');
-        const customSettingsFilePath = path.join(userDataPath, randomstring.generate(16));
-        const defaultSettingsFilePath = path.join(userDataPath, 'Settings');
-
-        settings.setPath(customSettingsFilePath);
-        settings.set('foo.bar', 'qux');
-        settings.clearPath();
-
-        assert.deepEqual(settings.get('foo.bar'), 'baz');
-        assert.equal(settings.file(), defaultSettingsFilePath);
-      });
-    });
+    });   
   });
 });
