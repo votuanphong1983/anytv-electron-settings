@@ -1,4 +1,4 @@
-/* global it, describe, before, after, beforeEach, afterEach */
+/* global it, describe, beforeEach, afterEach */
 
 const assert = require('assert');
 const electron = require('electron');
@@ -221,8 +221,6 @@ describe('settings', () => {
 
       it('should watch the given simple key path', done => {
         settings.watch('foo', function handler(newValue, oldValue) {
-          console.log('newVal = ', newValue)
-          console.log('oldVal = ', oldValue)
           assert.deepEqual(oldValue, { bar: 'baz' });
           assert.deepEqual(newValue, { bar: 'qux' });
 
@@ -246,7 +244,7 @@ describe('settings', () => {
 
         settings.set('foo.bar', 'qux');
       });
-      
+
       it('should return undefined if the watched key path is deleted', done => {
         settings.watch('foo.bar', function handler(newValue, oldValue) {
           assert.equal(oldValue, 'baz');
@@ -294,6 +292,19 @@ describe('settings', () => {
         assert.deepEqual(settings.get('foo.bar'), 'qux');
         assert.equal(settings.file(), customSettingsFilePath);
       });
-    });   
+    });
+
+
+    describe('unwatch()', () => {
+      it('should remote hander after unwatch', () => {
+        const handler = () => {
+          assert.doesNotThrow(() => {
+          });
+        };
+        settings.watch('foo', handler);
+        settings.unwatch('foo', handler);
+        settings.set('foo', { bar: 'qux' });
+      });
+    });
   });
 });
