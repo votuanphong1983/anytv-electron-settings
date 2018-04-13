@@ -301,6 +301,7 @@ describe('settings', () => {
           assert.doesNotThrow(() => {
           });
         };
+
         settings.watch('foo', handler);
         settings.unwatch('foo', handler);
         settings.set('foo', { bar: 'qux' });
